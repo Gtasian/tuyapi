@@ -171,6 +171,7 @@ TuyaDevice.prototype.get = function (options) {
   if ('devId' in requests[currentDevice.type].status.command) {
     requests[currentDevice.type].status.command.devId = currentDevice.id;
   }
+  
 
   debug('Payload: ');
   debug(requests[currentDevice.type].status.command);
@@ -187,7 +188,7 @@ TuyaDevice.prototype.get = function (options) {
       if (options !== undefined && options.schema === true) {
         resolve(data);
       } else {
-        resolve(data.dps['1']);
+        resolve(data.dps[options.dps.toString()]);
       }
     }).catch(err => {
       reject(err);
